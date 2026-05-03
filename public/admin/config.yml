@@ -3,8 +3,8 @@ backend:
   repo: kimolate2/astro-site
   branch: master
 
-media_folder: src/assets/images
-public_folder: /src/assets/images
+media_folder: public/images
+public_folder: /images
 
 collections:
   - name: blog
@@ -24,3 +24,74 @@ collections:
       - { name: tags, label: Tags, widget: list, required: false }
       - { name: draft, label: Draft, widget: boolean, default: false }
       - { name: body, label: Content, widget: markdown }
+
+  - name: pages
+    label: Pages
+    folder: src/content/pages
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: heroImage, label: Hero Image, widget: image, required: false }
+      - { name: body, label: Content, widget: markdown }
+
+  - name: authors
+    label: Authors
+    folder: src/content/authors
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: json
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: bio, label: Bio, widget: text, required: false }
+      - { name: avatar, label: Avatar, widget: image, required: false }
+      - { name: email, label: Email, widget: string, required: false }
+      - { name: social_twitter, label: Twitter, widget: string, required: false }
+      - { name: social_github, label: GitHub, widget: string, required: false }
+
+  - name: settings
+    label: Site Settings
+    files:
+      - name: general
+        label: General Settings
+        file: src/content/settings/general.json
+        fields:
+          - { name: site_title, label: Site Title, widget: string }
+          - { name: site_description, label: Site Description, widget: text }
+          - { name: site_url, label: Site URL, widget: string }
+          - { name: logo, label: Logo, widget: image, required: false }
+          - { name: favicon, label: Favicon, widget: image, required: false }
+
+      - name: navigation
+        label: Navigation
+        file: src/content/settings/navigation.json
+        fields:
+          - name: nav_items
+            label: Navigation Items
+            widget: list
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }
+              - { name: external, label: External Link, widget: boolean, default: false }
+
+      - name: social
+        label: Social Links
+        file: src/content/settings/social.json
+        fields:
+          - { name: twitter, label: Twitter URL, widget: string, required: false }
+          - { name: github, label: GitHub URL, widget: string, required: false }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
+          - { name: youtube, label: YouTube URL, widget: string, required: false }
+          - { name: instagram, label: Instagram URL, widget: string, required: false }
+
+      - name: seo
+        label: SEO Defaults
+        file: src/content/settings/seo.json
+        fields:
+          - { name: default_og_image, label: Default OG Image, widget: image, required: false }
+          - { name: google_analytics_id, label: Google Analytics ID, widget: string, required: false }
+          - { name: google_site_verification, label: Google Site Verification, widget: string, required: false }
