@@ -6,8 +6,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://kimolate2.github.io',
-	base: '/astro-site',
+	site: 'https://astro-site.pages.dev',
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
