@@ -1,9 +1,9 @@
 ---
-import '../styles/theme.css';
+import '../styles/shared.css';
+import '../styles/pages.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '@site-assets/blog-placeholder-1.jpg';
 import { SITE_TITLE } from '../consts';
-import { Font } from 'astro:assets';
 
 interface Props {
 	title: string;
@@ -29,7 +29,8 @@ const { title, description, image = FallbackImage } = Astro.props;
 />
 <meta name="generator" content={Astro.generator} />
 
-<Font cssVariable="--font-atkinson" preload />
+<link rel="preconnect" href="https://fonts.bunny.net" />
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=manrope:300,400,500,600,700" />
 
 <link rel="canonical" href={canonicalURL} />
 

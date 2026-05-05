@@ -6,8 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "sync-theme": "node scripts/sync-theme.mjs",
+    "dev": "node scripts/sync-theme.mjs && astro dev",
+    "build": "node scripts/sync-theme.mjs && astro build",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",

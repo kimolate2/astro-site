@@ -8,8 +8,15 @@ import cloudflare from '@astrojs/cloudflare';
 import { defineConfig, fontProviders } from 'astro/config';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const general = JSON.parse(readFileSync('./src/content/settings/general.json', 'utf-8'));
-const activeTheme = general.theme || 'default';
+function readThemeSlug() {
+  const env = process.env.THEME?.trim();
+  if (env) return env;
+  const generalPath = resolve('./src/content/settings/general.json');
+  const general = JSON.parse(readFileSync(generalPath, 'utf-8'));
+  return general.theme || 'default';
+}
+
+const activeTheme = readThemeSlug();
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +28,8 @@ export default defineConfig({
     resolve: {
       alias: {
         '@theme': resolve(`./src/themes/${activeTheme}`),
+        '@site-content': resolve('./src/content'),
+        '@site-assets': resolve('./src/assets'),
       },
     },
   },

@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={
+				heroImage && typeof heroImage !== 'string' ? heroImage : undefined
+			}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="learn-article">
+			<article class="l-container" style="max-width: 48rem; padding-bottom: 3rem;">
+				<header style="text-align: center; padding: 2rem 0 1rem;">
+					<p class="l-post-card__meta" style="justify-content: center; margin-bottom: 0.5rem;">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<span class="last-updated-on" style="font-style: italic;">
+									· Updated <FormattedDate date={updatedDate} />
+								</span>
+							)
+						}
+					</p>
+					<h1 style="margin: 0 0 1rem; font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.15;">
+						{title}
+					</h1>
+				</header>
+				{
+					heroImage && (
+						<div class="l-course-feature-img">
+							{typeof heroImage === 'string' ? (
+								<img src={heroImage} alt="" width="1020" height="510" />
+							) : (
+								<Image width={1020} height={510} src={heroImage} alt="" />
+							)}
+						</div>
+					)
+				}
+				<div class="l-prose gh-content">
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

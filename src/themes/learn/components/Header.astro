@@ -1,0 +1,37 @@
+---
+import { SITE_TITLE } from '../consts';
+
+const pathname = Astro.url.pathname;
+
+function norm(p: string) {
+	return p.replace(/\/$/, '') || '/';
+}
+
+const cur = norm(pathname);
+
+function isActive(href: string) {
+	const h = norm(href);
+	if (h === '/') {
+		return cur === '/';
+	}
+	return cur === h || cur.startsWith(`${h}/`);
+}
+---
+
+<header class="l-header">
+	<div class="l-container l-header__inner">
+		<a class="l-brand" href="/">
+			<img src="https://learn.gthememarket.com/content/images/2025/08/logo.svg" alt="" width="120" height="40" />
+			<span>{SITE_TITLE}</span>
+		</a>
+		<nav class="l-nav" aria-label="Main">
+			<a href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+			<a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a>
+			<a
+				href="/course/entrepreneurship-and-innovation/"
+				aria-current={isActive('/course/entrepreneurship-and-innovation/') ? 'page' : undefined}>Course</a>
+			<a href="/#latest-courses">Courses</a>
+			<a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>About</a>
+		</nav>
+	</div>
+</header>

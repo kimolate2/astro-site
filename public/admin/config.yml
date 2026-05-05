@@ -81,8 +81,8 @@ collections:
           - { name: site_url, label: Site URL, widget: string }
           - { name: logo, label: Logo, widget: image, required: false }
           - { name: favicon, label: Favicon, widget: image, required: false }
-          # 新增主题：在 src/themes/<slug>/ 添加文件夹后，把 slug 加入下方 options
-          - { name: theme, label: Theme, widget: select, options: ["default"], default: "default" }
+          # 新增主题：src/themes/<slug>/（layouts、components、styles、pages）；pages 为路由源码，构建前会同步到 src/pages；把 slug 加入下方 options
+          - { name: theme, label: Theme, widget: select, options: ["default", "learn"], default: "default" }
 
       - name: navigation
         label: Navigation

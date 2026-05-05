@@ -2,19 +2,21 @@
 import BaseHead from '@theme/components/BaseHead.astro';
 import Footer from '@theme/components/Footer.astro';
 import Header from '@theme/components/Header.astro';
-import ThemeHome from '@theme/components/ThemeHome.astro';
+import CourseSamplePage from '@theme/components/CourseSamplePage.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@theme/consts';
+
+const title = `Entrepreneurship & Innovation — ${SITE_TITLE}`;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={title} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<ThemeHome />
+			<CourseSamplePage />
 		</main>
 		<Footer />
 	</body>

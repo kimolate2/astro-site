@@ -1,8 +1,6 @@
 ---
-import general from '../../../content/settings/general.json';
+import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
-
-const SITE_TITLE = (general as any).site_title || 'Astro Blog';
 ---
 
 <header>
@@ -67,7 +65,7 @@ const SITE_TITLE = (general as any).site_title || 'Astro Blog';
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		color: rgb(var(--black));
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}

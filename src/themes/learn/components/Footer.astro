@@ -1,0 +1,34 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="l-footer">
+	<div class="l-footer__bg" aria-hidden="true"></div>
+	<div class="l-container">
+		<div class="l-newsletter">
+			<div class="l-newsletter__grid">
+				<div>
+					<h3>Subscribe to Learn</h3>
+					<p>
+						We periodically share new articles and course updates. This block is static on the demo; connect your
+						newsletter provider in production.
+					</p>
+				</div>
+				<div class="l-newsletter__form">
+					<div class="l-newsletter__fake-input" role="presentation">Enter your email</div>
+					<button type="button" class="l-newsletter__submit">Subscribe</button>
+				</div>
+			</div>
+			<nav class="l-footer__legal" aria-label="Footer">
+				<a href="/blog/">Blog</a>
+				<a href="/about/">About</a>
+			</nav>
+			<p class="l-footer__copy">
+				© {year} · Theme reference <a href="https://learn.gthememarket.com/" rel="nofollow">Ghost LMS demo</a>
+				<br />
+				<a href="https://themeix.com/" rel="nofollow">Themeix</a>
+				· <a href="https://ghost.org/" rel="nofollow">Ghost</a>
+			</p>
+		</div>
+	</div>
+</footer>

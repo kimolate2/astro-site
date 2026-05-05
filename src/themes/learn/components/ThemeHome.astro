@@ -1,0 +1,216 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6);
+---
+
+<section class="l-hero">
+	<div class="l-container">
+		<div class="l-hero__grid">
+			<div class="l-hero__text">
+				<h1>{SITE_TITLE}</h1>
+				<p class="l-hero__lead">{SITE_DESCRIPTION}</p>
+				<div class="l-hero__actions">
+					<a class="l-btn l-btn--primary" href="/about/">Contact</a>
+					<a class="l-btn l-btn--ghost" href="/#latest-courses">View courses</a>
+				</div>
+			</div>
+			<div class="l-hero__visual">
+				<img
+					src="https://images.unsplash.com/photo-1607013407627-6ee814329547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDh8fGdyYWR1YXRlfGVufDB8fHx8MTc1OTYxMjUxOHww&ixlib=rb-4.1.0&q=80&w=1200"
+					width="750"
+					height="923"
+					alt=""
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="l-topics" aria-labelledby="topics-heading">
+	<div class="l-container">
+		<div class="l-section-head">
+			<h2 id="topics-heading">Popular topics</h2>
+		</div>
+		<div class="l-topics__scroll">
+			<article class="l-topic-card">
+				<div class="topics-content">
+					<h4><a href="/blog/">Tutorial</a></h4>
+				</div>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1605379399642-870262d3d051?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="/blog/">Programming</a></h4>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1591286226033-b8ca8a3f5cd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="/blog/">Marketing</a></h4>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="/blog/">Data science</a></h4>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="/blog/">Python</a></h4>
+			</article>
+		</div>
+	</div>
+</section>
+
+<section class="l-courses" id="latest-courses" aria-labelledby="courses-heading">
+	<div class="l-container">
+		<div class="l-section-title-row">
+			<h2 id="courses-heading">Latest courses</h2>
+			<a class="l-link-all" href="/course/entrepreneurship-and-innovation/">Sample course <span aria-hidden="true">→</span></a>
+		</div>
+		<div class="l-course-grid">
+			<article class="l-course-card">
+				<div class="l-course-card__media">
+					<a href="/course/entrepreneurship-and-innovation/">
+						<img
+							src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/>
+					</a>
+					<span class="l-course-card__badge">
+						<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+							></path>
+						</svg>
+						7 lessons
+					</span>
+				</div>
+				<div class="l-course-card__body">
+					<h4>
+						<a href="/course/entrepreneurship-and-innovation/">Entrepreneurship &amp; Innovation (Free Course)</a>
+					</h4>
+					<p class="l-course-card__excerpt">
+						Discover the ‘Entrepreneurship and Innovation’ course, designed to equip you with the essential skills.
+					</p>
+					<div class="l-course-card__author">
+						<img
+							src="https://learn.gthememarket.com/content/images/2025/10/463334658_459154863807476_1238431492671345804_n.jpg"
+							alt=""
+						/>
+						<div>
+							<h6>Themeix</h6>
+							<p>United States</p>
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="l-course-card">
+				<div class="l-course-card__media">
+					<a href="https://learn.gthememarket.com/course/data-analytics-techniques/">
+						<img
+							src="https://images.unsplash.com/photo-1704643009454-6edd37f4fbf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/>
+					</a>
+					<span class="l-course-card__badge">7 lessons</span>
+				</div>
+				<div class="l-course-card__body">
+					<h4>
+						<a href="https://learn.gthememarket.com/course/data-analytics-techniques/">Data Analytics Techniques for 2025</a>
+					</h4>
+					<p class="l-course-card__excerpt">Master data analytics with practical techniques.</p>
+					<div class="l-course-card__author">
+						<img
+							src="https://learn.gthememarket.com/content/images/2025/10/463334658_459154863807476_1238431492671345804_n.jpg"
+							alt=""
+						/>
+						<div>
+							<h6>Themeix</h6>
+							<p>United States</p>
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="l-course-card">
+				<div class="l-course-card__media">
+					<a href="https://learn.gthememarket.com/course/statistical-analysis-for-data-science/">
+						<img
+							src="https://images.unsplash.com/photo-1704642526738-fc66db024fd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/>
+					</a>
+					<span class="l-course-card__badge">4 lessons</span>
+				</div>
+				<div class="l-course-card__body">
+					<h4>
+						<a href="https://learn.gthememarket.com/course/statistical-analysis-for-data-science/"
+							>Statistical Analysis for Data Science</a>
+					</h4>
+					<p class="l-course-card__excerpt">Core principles of UI/UX and user research.</p>
+					<div class="l-course-card__author">
+						<img
+							src="https://learn.gthememarket.com/content/images/2025/10/463334658_459154863807476_1238431492671345804_n.jpg"
+							alt=""
+						/>
+						<div>
+							<h6>Themeix</h6>
+							<p>United States</p>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+<section class="l-articles" aria-labelledby="articles-heading">
+	<div class="l-container">
+		<div class="l-section-title-row">
+			<h2 id="articles-heading">Latest from the blog</h2>
+			<a class="l-link-all" href="/blog/">View all <span aria-hidden="true">→</span></a>
+		</div>
+		<div class="l-masonry">
+			{
+				posts.map((post) => (
+					<article class="l-post-card">
+						<div class="l-post-card__img-wrap">
+							<a href={`/blog/${post.id}/`}>
+								{post.data.heroImage &&
+									(typeof post.data.heroImage === 'string' ? (
+										<img src={post.data.heroImage} alt="" width="600" height="400" />
+									) : (
+										<Image width={600} height={400} src={post.data.heroImage} alt="" />
+									))}
+							</a>
+						</div>
+						<div class="l-post-card__body">
+							<div class="l-post-card__meta">
+								<span>{post.data.category ?? 'Article'}</span>
+							</div>
+							<h4>
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							</h4>
+							<p>{post.data.description}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

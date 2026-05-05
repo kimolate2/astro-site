@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+type Props = {
+	posts: CollectionEntry<'blog'>[];
+};
+
+const { posts } = Astro.props;
+---
+
+<div class="l-blog-page">
+	<header class="l-blog-header">
+		<div class="l-container">
+			<h1>Blog</h1>
+			<p class="l-hero__lead">
+				Articles from the collection. Layout inspired by the Ghost LMS demo.
+			</p>
+		</div>
+	</header>
+	<div class="l-container l-blog-posts">
+		<div class="l-masonry">
+			{
+				posts.map((post) => (
+					<article class="l-post-card">
+						<div class="l-post-card__img-wrap">
+							<a href={`/blog/${post.id}/`}>
+								{post.data.heroImage &&
+									(typeof post.data.heroImage === 'string' ? (
+										<img src={post.data.heroImage} alt="" width="720" height="480" />
+									) : (
+										<Image width={720} height={480} src={post.data.heroImage} alt="" />
+									))}
+							</a>
+						</div>
+						<div class="l-post-card__body">
+							<div class="l-post-card__meta">
+								<span>{post.data.category ?? 'Article'}</span>
+							</div>
+							<h4>
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							</h4>
+							<p>{post.data.description}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</div>
