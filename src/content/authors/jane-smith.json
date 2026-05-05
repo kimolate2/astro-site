@@ -1,0 +1,14 @@
+{
+  "name": "Jane Smith",
+  "slug": "jane-smith",
+  "role": "Senior Writer",
+  "bio": "Specializes in disk management and backup solutions. Writes clear, step-by-step guides for non-technical users.",
+  "avatar": "",
+  "social": {
+    "twitter": "https://twitter.com/janesmith",
+    "linkedin": "https://linkedin.com/in/janesmith"
+  },
+  "expertise": "Disk management, backup solutions, cloud storage, Mac data recovery, photo recovery",
+  "equipment": ["MacBook Pro M3", "Seagate Backup Plus 5TB", "SanDisk Extreme Pro SD Card"],
+  "education": "M.A. Technical Communication, Stanford University."
+}

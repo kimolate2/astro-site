@@ -1,0 +1,14 @@
+{
+  "name": "Alex Chen",
+  "slug": "alex-chen",
+  "role": "Technical Reviewer",
+  "bio": "Tests every tool in lab conditions across OS platforms. Ensures all claims in reviews are verified with real data.",
+  "avatar": "",
+  "social": {
+    "twitter": "",
+    "linkedin": "https://linkedin.com/in/alexchen"
+  },
+  "expertise": "Software testing, cross-platform compatibility, performance benchmarking, SSD recovery, Android data recovery",
+  "equipment": ["Dell Precision 5570 Workstation", "Kingston DataTraveler Max", "Samsung T7 Shield Portable SSD", "Android test devices (Pixel 8, Galaxy S24)"],
+  "education": "B.S. Software Engineering, UC Berkeley. CompTIA A+ Certified."
+}

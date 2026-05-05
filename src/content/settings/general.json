@@ -3,5 +3,6 @@
   "site_description": "A blog built with Astro and Sveltia CMS",
   "site_url": "https://astro-site.leimingkai789.workers.dev",
   "logo": "",
-  "favicon": ""
+  "favicon": "",
+  "theme": "default"
 }

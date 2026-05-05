@@ -22,7 +22,15 @@ collections:
       - { name: heroImage, label: Hero Image, widget: image, required: false }
       - { name: category, label: Category, widget: select, options: ["Tech", "Life", "Business", "Tutorial"], required: false }
       - { name: tags, label: Tags, widget: list, required: false }
+      - { name: author, label: Author, widget: relation, collection: authors, value_field: name, search_fields: [name], required: false }
       - { name: draft, label: Draft, widget: boolean, default: false }
+      - name: faq
+        label: FAQ
+        widget: list
+        required: false
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: answer, label: Answer, widget: text }
       - { name: body, label: Content, widget: markdown }
 
   - name: pages
@@ -47,11 +55,19 @@ collections:
     extension: json
     fields:
       - { name: name, label: Name, widget: string }
+      - { name: slug, label: Slug, widget: string, hint: "URL-safe identifier, e.g. john-doe" }
+      - { name: role, label: Role, widget: string, required: false }
       - { name: bio, label: Bio, widget: text, required: false }
       - { name: avatar, label: Avatar, widget: image, required: false }
       - { name: email, label: Email, widget: string, required: false }
-      - { name: social_twitter, label: Twitter, widget: string, required: false }
-      - { name: social_github, label: GitHub, widget: string, required: false }
+      - name: social
+        label: Social Links
+        widget: object
+        required: false
+        fields:
+          - { name: twitter, label: Twitter URL, widget: string, required: false }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
+          - { name: github, label: GitHub URL, widget: string, required: false }
 
   - name: settings
     label: Site Settings
@@ -65,6 +81,8 @@ collections:
           - { name: site_url, label: Site URL, widget: string }
           - { name: logo, label: Logo, widget: image, required: false }
           - { name: favicon, label: Favicon, widget: image, required: false }
+          # 新增主题：在 src/themes/<slug>/ 添加文件夹后，把 slug 加入下方 options
+          - { name: theme, label: Theme, widget: select, options: ["default"], default: "default" }
 
       - name: navigation
         label: Navigation

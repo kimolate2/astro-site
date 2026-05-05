@@ -1,0 +1,14 @@
+{
+  "name": "John Doe",
+  "slug": "john-doe",
+  "role": "Editor-in-Chief",
+  "bio": "15+ years of experience in data recovery and digital forensics. Former systems engineer at a Fortune 500 company. Passionate about making complex tech accessible to everyone.",
+  "avatar": "",
+  "social": {
+    "twitter": "https://twitter.com/johndoe",
+    "linkedin": "https://linkedin.com/in/johndoe"
+  },
+  "expertise": "Data recovery, digital forensics, disk management, enterprise storage systems, RAID recovery",
+  "equipment": ["WD My Passport 4TB", "Samsung 870 EVO SSD", "Sabrent USB 3.0 Docking Station", "Custom forensic workstation"],
+  "education": "B.S. Computer Science, MIT. Certified Data Recovery Professional (CDRP)."
+}

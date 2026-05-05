@@ -1,0 +1,19 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heroImage?: string;
+}
+
+const { title, description, heroImage } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div style="max-width: 720px; margin: auto; padding: 3em 1em;">
+    <h1>{title}</h1>
+    {heroImage && <img src={heroImage} alt={title} style="width: 100%; border-radius: 12px; margin-bottom: 2em;" />}
+    <slot />
+  </div>
+</Base>

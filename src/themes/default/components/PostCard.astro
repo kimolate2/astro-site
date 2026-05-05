@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  heroImage?: any;
+  category?: string;
+  tags?: string[];
+  slug: string;
+}
+
+const { title, description, pubDate, heroImage, slug } = Astro.props;
+---
+
+<li>
+  <a href={`/blog/${slug}`}>
+    <h4>{title}</h4>
+    <p>{description}</p>
+    <time datetime={pubDate.toISOString()}>
+      {pubDate.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}
+    </time>
+  </a>
+</li>
+
+<style>
+  li { list-style: none; margin-bottom: 1.5rem; }
+  a { text-decoration: none; color: inherit; }
+  a:hover h4 { color: var(--accent, #2337ff); }
+  h4 { margin: 0 0 0.25rem; }
+  p { margin: 0 0 0.25rem; color: rgb(var(--gray, 96, 115, 159)); font-size: 0.9em; }
+  time { font-size: 0.8em; color: rgb(var(--gray, 96, 115, 159)); }
+</style>

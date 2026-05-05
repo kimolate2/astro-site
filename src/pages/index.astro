@@ -1,49 +1,213 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+import Base from '@theme/layouts/Base.astro';
+import PostCard from '@theme/components/PostCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sorted = allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const featured = sorted.filter(p => (p.data as any).featured);
+const popular = sorted.filter(p => (p.data as any).popular);
+const recent = sorted.slice(0, 6);
+
+const categories = [...new Set(allPosts.map(p => p.data.category).filter(Boolean))];
+const catCounts = Object.fromEntries(
+  categories.map(c => [c, allPosts.filter(p => p.data.category === c).length])
+);
+
+const authorFiles = import.meta.glob('/src/content/authors/*.json', { eager: true });
+function resolveAuthor(name?: string) {
+  if (!name) return null;
+  const match = Object.values(authorFiles).find(
+    (f: any) => (f.default || f).name?.toLowerCase() === name.toLowerCase()
+  );
+  const data = match ? ((match as any).default || match) : null;
+  return data ? { name: data.name, avatar: data.avatar || '' } : { name, avatar: '' };
+}
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Base title="Home" description="Expert reviews, step-by-step guides, and honest recommendations for data recovery.">
+
+  <!-- Hero -->
+  <section class="home-hero">
+    <h1>Data Recovery Software Reviews & Guides</h1>
+    <p>Expert-tested reviews and step-by-step guides to help you recover lost files, fix storage issues, and protect your data.</p>
+    <nav class="cta-group">
+      <a href="/blog" class="cta cta-yellow">Best Recovery Software</a>
+      <a href="/blog" class="cta cta-blue">Recovery Tutorials</a>
+      <a href="/blog" class="cta cta-green">Community Forum</a>
+      <a href="/editorial-guidelines" class="cta cta-outline">Our Standards</a>
+    </nav>
+  </section>
+
+  <!-- Featured Resources -->
+  {featured.length > 0 && (
+    <section class="home-section">
+      <h2 class="section-title">Featured Resources</h2>
+      <div class="featured-grid">
+        {featured.slice(0, 4).map(post => {
+          const img = typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage?.src;
+          const rating = (post.data as any).rating;
+          return (
+            <a class="featured-card" href={`/blog/${post.id}`}>
+              <div class="featured-image">
+                {img ? <img src={img} alt={post.data.title} loading="lazy" /> : <div class="featured-placeholder" />}
+                {rating && <span class="rating-badge">★ {rating}</span>}
+              </div>
+              <div class="featured-info">
+                {post.data.category && <span class="featured-tag">{post.data.category}</span>}
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- New Posts -->
+  <section class="home-section">
+    <div class="section-header">
+      <h2 class="section-title">New Posts</h2>
+      <a href="/blog" class="section-link">View All &rarr;</a>
+    </div>
+    <div class="post-grid">
+      {recent.map(post => {
+        const author = resolveAuthor((post.data as any).author);
+        return (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            heroImage={post.data.heroImage}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+            author={author?.name}
+            rating={(post.data as any).rating}
+          />
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Most Popular -->
+  {popular.length > 0 && (
+    <section class="home-section">
+      <div class="section-header">
+        <h2 class="section-title">Most Popular Posts</h2>
+        <a href="/blog" class="section-link">View All &rarr;</a>
+      </div>
+      <div class="post-grid">
+        {popular.slice(0, 6).map(post => {
+          const author = resolveAuthor((post.data as any).author);
+          return (
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              heroImage={post.data.heroImage}
+              category={post.data.category}
+              tags={post.data.tags}
+              slug={post.id}
+              author={author?.name}
+              rating={(post.data as any).rating}
+            />
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- Categories -->
+  {categories.length > 0 && (
+    <section class="home-section">
+      <h2 class="section-title">Browse by Category</h2>
+      <div class="cat-grid">
+        {categories.map((cat, i) => (
+          <a class:list={['cat-card', { highlight: i === 0 }]} href={`/category/${cat!.toLowerCase()}`}>
+            <span class="cat-name">{cat}</span>
+            <span class="cat-count">{catCounts[cat!]} articles</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- More Popular Posts -->
+  {sorted.length > 6 && (
+    <section class="home-section">
+      <h2 class="section-title">More Popular Posts</h2>
+      <div class="link-list">
+        {sorted.slice(6, 20).map(post => (
+          <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+</Base>
+
+<style>
+  .home-hero { background: var(--color-dark-bg); color: #fff; padding: 5rem 40px 4rem; text-align: center; }
+  .home-hero h1 { font-size: clamp(36px, 4vw, 56px); font-weight: 800; letter-spacing: -.03em; color: #fff; line-height: 1.1; margin: 0 0 16px; }
+  .home-hero p { font-size: 18px; color: rgba(255,255,255,.6); max-width: 640px; margin: 0 auto 32px; line-height: 1.6; }
+  .cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; font-size: 14px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: opacity .15s, transform .15s; border: none; }
+  .cta:hover { opacity: .9; transform: translateY(-1px); text-decoration: none; }
+  .cta-yellow { background: var(--color-cta-yellow); color: var(--color-dark-bg); }
+  .cta-blue { background: var(--color-primary); color: #fff; }
+  .cta-green { background: var(--color-cta-green); color: #fff; }
+  .cta-outline { background: #fff; color: var(--color-dark-bg); border: 1px solid rgba(255,255,255,.3); }
+
+  .home-section { max-width: var(--max-width); margin-inline: auto; padding: 0 40px 3.5rem; }
+  .home-section:first-of-type { padding-top: 3.5rem; }
+  .section-title { font-size: 28px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 24px; color: var(--color-text); }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+  .section-header .section-title { margin-bottom: 0; }
+  .section-link { font-size: 14px; font-weight: 600; color: var(--color-primary); text-decoration: none; }
+  .section-link:hover { text-decoration: underline; }
+
+  .post-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+
+  .featured-grid { display: grid; gap: 20px; grid-template-columns: repeat(2, 1fr); }
+  .featured-card { display: grid; grid-template-columns: 200px 1fr; border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: #fff; text-decoration: none; color: inherit; transition: box-shadow .15s, transform .15s; }
+  .featured-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: translateY(-2px); text-decoration: none; color: inherit; }
+  .featured-image { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--color-bg-alt); }
+  .featured-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .featured-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-border) 100%); }
+  .rating-badge { position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; gap: 3px; padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,.92); backdrop-filter: blur(4px); font-size: 13px; font-weight: 700; color: var(--color-rating); }
+  .featured-info { padding: 20px 24px; display: grid; gap: 8px; align-content: center; }
+  .featured-tag { display: inline-block; width: fit-content; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 4px; background: var(--color-primary); color: #fff; }
+  .featured-info h3 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; color: var(--color-text); }
+  .featured-info p { margin: 0; font-size: 14px; color: var(--color-text-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .cat-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+  .cat-card { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); text-decoration: none; color: inherit; background: #fff; transition: border-color .15s, box-shadow .15s, transform .15s; }
+  .cat-card:hover { border-color: var(--color-primary); box-shadow: 0 4px 12px rgba(37,99,235,.08); transform: translateY(-1px); text-decoration: none; color: inherit; }
+  .cat-card.highlight { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .cat-card.highlight .cat-count { color: rgba(255,255,255,.7); }
+  .cat-name { font-size: 15px; font-weight: 600; flex: 1; }
+  .cat-count { font-size: 13px; color: var(--color-text-muted); font-weight: 500; }
+
+  .link-list { column-count: 2; column-gap: 40px; }
+  .link-list a { display: block; padding: 10px 0; font-size: 15px; color: var(--color-text); text-decoration: none; border-bottom: 1px solid var(--color-border); break-inside: avoid; transition: color .15s; }
+  .link-list a:hover { color: var(--color-primary); text-decoration: none; }
+
+  @media (max-width: 1024px) {
+    .post-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .home-hero { padding: 3rem 20px 2.5rem; }
+    .home-section { padding-inline: 20px; }
+    .post-grid { grid-template-columns: 1fr; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-image { aspect-ratio: 16/9; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .cat-grid { grid-template-columns: 1fr; }
+    .link-list { column-count: 1; }
+  }
+</style>

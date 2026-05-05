@@ -1,6 +1,8 @@
 ---
-import { SITE_TITLE } from '../consts';
+import general from '../../../content/settings/general.json';
 import HeaderLink from './HeaderLink.astro';
+
+const SITE_TITLE = (general as any).site_title || 'Astro Blog';
 ---
 
 <header>
