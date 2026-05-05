@@ -3,17 +3,17 @@ import BaseHead from '@theme/components/BaseHead.astro';
 import Footer from '@theme/components/Footer.astro';
 import Header from '@theme/components/Header.astro';
 import CourseSamplePage from '@theme/components/CourseSamplePage.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@theme/consts';
+import { LEARN_BRAND, LEARN_INDEX_META_DESCRIPTION } from '@theme/consts';
 
-const title = `Entrepreneurship & Innovation — ${SITE_TITLE}`;
+const title = `${LEARN_BRAND} · Entrepreneurship & Innovation`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
 	<head>
-		<BaseHead title={title} description={SITE_DESCRIPTION} />
+		<BaseHead title={title} description={LEARN_INDEX_META_DESCRIPTION} />
 	</head>
-	<body>
+	<body data-theme="learn">
 		<Header />
 		<main>
 			<CourseSamplePage />

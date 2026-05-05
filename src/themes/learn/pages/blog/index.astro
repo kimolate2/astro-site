@@ -1,25 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseHead from '@theme/components/BaseHead.astro';
 import Footer from '@theme/components/Footer.astro';
 import Header from '@theme/components/Header.astro';
 import ThemeBlogIndex from '@theme/components/ThemeBlogIndex.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@theme/consts';
-
-const posts = (
-	await getCollection('blog', ({ data }) => !data.draft)
-).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import { LEARN_BRAND, LEARN_INDEX_META_DESCRIPTION } from '@theme/consts';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
 	<head>
-		<BaseHead title={`Blog — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={`${LEARN_BRAND} · 博客`} description={LEARN_INDEX_META_DESCRIPTION} />
 	</head>
-	<body>
+	<body data-theme="learn">
 		<Header />
 		<main>
-			<ThemeBlogIndex posts={posts} />
+			<ThemeBlogIndex />
 		</main>
 		<Footer />
 	</body>

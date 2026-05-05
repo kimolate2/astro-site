@@ -1,12 +1,4 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-
-type Props = {
-	posts: CollectionEntry<'blog'>[];
-};
-
-const { posts } = Astro.props;
 ---
 
 <div class="l-blog-page">
@@ -14,37 +6,156 @@ const { posts } = Astro.props;
 		<div class="l-container">
 			<h1>Blog</h1>
 			<p class="l-hero__lead">
-				Articles from the collection. Layout inspired by the Ghost LMS demo.
+				Discover the Ghost LMS Theme, a modern and versatile solution for creating and managing online courses.
+				Featuring a clean design, customizable layouts, and user-friendly navigation
 			</p>
 		</div>
 	</header>
 	<div class="l-container l-blog-posts">
 		<div class="l-masonry">
-			{
-				posts.map((post) => (
-					<article class="l-post-card">
-						<div class="l-post-card__img-wrap">
-							<a href={`/blog/${post.id}/`}>
-								{post.data.heroImage &&
-									(typeof post.data.heroImage === 'string' ? (
-										<img src={post.data.heroImage} alt="" width="720" height="480" />
-									) : (
-										<Image width={720} height={480} src={post.data.heroImage} alt="" />
-									))}
-							</a>
-						</div>
-						<div class="l-post-card__body">
-							<div class="l-post-card__meta">
-								<span>{post.data.category ?? 'Article'}</span>
-							</div>
-							<h4>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-							</h4>
-							<p>{post.data.description}</p>
-						</div>
-					</article>
-				))
-			}
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a
+						href="https://learn.gthememarket.com/blog/common-business-development-mistakes-and-how-to-avoid-them/"
+						><img
+							src="https://images.unsplash.com/photo-1646215993421-5151435c78dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a
+							href="https://learn.gthememarket.com/blog/common-business-development-mistakes-and-how-to-avoid-them/"
+							>Common Business Development Mistakes and How to Avoid Them</a>
+					</h4>
+					<p>
+						Avoid costly business development mistakes by learning the most common pitfalls and their solutions.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a
+						href="https://learn.gthememarket.com/blog/effective-negotiation-skills-every-business-developer-needs/"
+						><img
+							src="https://images.unsplash.com/photo-1696087225391-eb97abf5ba20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a
+							href="https://learn.gthememarket.com/blog/effective-negotiation-skills-every-business-developer-needs/"
+							>Effective Negotiation Skills Every Business Developer Needs</a>
+					</h4>
+					<p>Master essential negotiation skills to close deals, build partnerships, and drive business success.</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/the-role-of-networking-in-business-growth/"
+						><img
+							src="https://images.unsplash.com/photo-1520110120835-c96534a4c984?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/the-role-of-networking-in-business-growth/"
+							>The Role of Networking in Business Growth</a>
+					</h4>
+					<p>
+						Find out how effective networking can open doors, build trust, and accelerate your business growth.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/how-to-identify-and-seize-new-market-opportunities/"
+						><img
+							src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/how-to-identify-and-seize-new-market-opportunities/"
+							>How to Identify and Seize New Market Opportunities</a>
+					</h4>
+					<p>
+						Discover practical ways to spot new market opportunities and position your business for sustainable
+						growth.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/the-ultimate-guide-to-python-data-structures/"
+						><img
+							src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Python</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/the-ultimate-guide-to-python-data-structures/"
+							>The Ultimate Guide to Python Data Structures</a>
+					</h4>
+					<p>Python is renowned for its readability and simplicity, and its data structures are no exception.</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/mastering-javascript-essential-tips-for-beginners/"
+						><img
+							src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/mastering-javascript-essential-tips-for-beginners/"
+							>Mastering JavaScript: Essential Tips for Beginners</a>
+					</h4>
+					<p>Dive into the basics of JavaScript with practical tips and techniques for beginners.</p>
+				</div>
+			</article>
 		</div>
 	</div>
 </div>

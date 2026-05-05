@@ -1,22 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 6);
 ---
 
 <section class="l-hero">
 	<div class="l-container">
 		<div class="l-hero__grid">
 			<div class="l-hero__text">
-				<h1>{SITE_TITLE}</h1>
-				<p class="l-hero__lead">{SITE_DESCRIPTION}</p>
+				<h1>Learn</h1>
+				<p class="l-hero__lead">
+					Discover the Ghost LMS Theme, a modern and versatile solution for creating and managing online courses.
+					Featuring a clean design, customizable layouts, and user-friendly navigation
+				</p>
 				<div class="l-hero__actions">
-					<a class="l-btn l-btn--primary" href="/about/">Contact</a>
-					<a class="l-btn l-btn--ghost" href="/#latest-courses">View courses</a>
+					<a class="l-btn l-btn--primary" href="https://learn.gthememarket.com/contact-us/">联系我们</a>
+					<a class="l-btn l-btn--ghost" href="/#latest-courses">浏览课程</a>
 				</div>
 			</div>
 			<div class="l-hero__visual">
@@ -34,12 +30,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <section class="l-topics" aria-labelledby="topics-heading">
 	<div class="l-container">
 		<div class="l-section-head">
-			<h2 id="topics-heading">Popular topics</h2>
+			<h2 id="topics-heading">热门方向</h2>
 		</div>
 		<div class="l-topics__scroll">
 			<article class="l-topic-card">
 				<div class="topics-content">
-					<h4><a href="/blog/">Tutorial</a></h4>
+					<h4><a href="#">Tutorial</a></h4>
 				</div>
 			</article>
 			<article class="l-topic-card">
@@ -47,28 +43,42 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 					src="https://images.unsplash.com/photo-1605379399642-870262d3d051?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
 					alt=""
 				/>
-				<h4><a href="/blog/">Programming</a></h4>
+				<h4><a href="#">Programming Course</a></h4>
 			</article>
 			<article class="l-topic-card">
 				<img
 					src="https://images.unsplash.com/photo-1591286226033-b8ca8a3f5cd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
 					alt=""
 				/>
-				<h4><a href="/blog/">Marketing</a></h4>
+				<h4><a href="#">Marketing Course</a></h4>
 			</article>
 			<article class="l-topic-card">
 				<img
 					src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
 					alt=""
 				/>
-				<h4><a href="/blog/">Data science</a></h4>
+				<h4><a href="#">Data Science Course</a></h4>
 			</article>
 			<article class="l-topic-card">
 				<img
 					src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
 					alt=""
 				/>
-				<h4><a href="/blog/">Python</a></h4>
+				<h4><a href="#">Python</a></h4>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="#">Tech &amp; Digital Skills</a></h4>
+			</article>
+			<article class="l-topic-card">
+				<img
+					src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+					alt=""
+				/>
+				<h4><a href="#">Business Course</a></h4>
 			</article>
 		</div>
 	</div>
@@ -77,8 +87,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <section class="l-courses" id="latest-courses" aria-labelledby="courses-heading">
 	<div class="l-container">
 		<div class="l-section-title-row">
-			<h2 id="courses-heading">Latest courses</h2>
-			<a class="l-link-all" href="/course/entrepreneurship-and-innovation/">Sample course <span aria-hidden="true">→</span></a>
+			<h2 id="courses-heading">最新课程</h2>
+			<a class="l-link-all" href="https://learn.gthememarket.com/courses/">查看全部 <span aria-hidden="true">→</span></a>
 		</div>
 		<div class="l-course-grid">
 			<article class="l-course-card">
@@ -89,7 +99,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 							alt=""
 						/>
 					</a>
-					<span class="l-course-card__badge">
+					<span class="l-course-card__badge" aria-label="7 节课">
 						<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 							<path
 								stroke-linecap="round"
@@ -98,7 +108,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
 							></path>
 						</svg>
-						7 lessons
+						7 节课
 					</span>
 				</div>
 				<div class="l-course-card__body">
@@ -128,13 +138,25 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 							alt=""
 						/>
 					</a>
-					<span class="l-course-card__badge">7 lessons</span>
+					<span class="l-course-card__badge">
+						<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+							></path>
+						</svg>
+						7 节课
+					</span>
 				</div>
 				<div class="l-course-card__body">
 					<h4>
 						<a href="https://learn.gthememarket.com/course/data-analytics-techniques/">Data Analytics Techniques for 2025</a>
 					</h4>
-					<p class="l-course-card__excerpt">Master data analytics with practical techniques.</p>
+					<p class="l-course-card__excerpt">
+						Master data analytics with our ‘Data Analytics Techniques’ course.
+					</p>
 					<div class="l-course-card__author">
 						<img
 							src="https://learn.gthememarket.com/content/images/2025/10/463334658_459154863807476_1238431492671345804_n.jpg"
@@ -155,14 +177,26 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 							alt=""
 						/>
 					</a>
-					<span class="l-course-card__badge">4 lessons</span>
+					<span class="l-course-card__badge">
+						<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+							></path>
+						</svg>
+						4 节课
+					</span>
 				</div>
 				<div class="l-course-card__body">
 					<h4>
 						<a href="https://learn.gthememarket.com/course/statistical-analysis-for-data-science/"
 							>Statistical Analysis for Data Science</a>
 					</h4>
-					<p class="l-course-card__excerpt">Core principles of UI/UX and user research.</p>
+					<p class="l-course-card__excerpt">
+						Learn the core principles of UI and UX design, user research, and design basics.
+					</p>
 					<div class="l-course-card__author">
 						<img
 							src="https://learn.gthememarket.com/content/images/2025/10/463334658_459154863807476_1238431492671345804_n.jpg"
@@ -182,35 +216,153 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <section class="l-articles" aria-labelledby="articles-heading">
 	<div class="l-container">
 		<div class="l-section-title-row">
-			<h2 id="articles-heading">Latest from the blog</h2>
-			<a class="l-link-all" href="/blog/">View all <span aria-hidden="true">→</span></a>
+			<h2 id="articles-heading">最新文章</h2>
+			<a class="l-link-all" href="/blog/">查看全部 <span aria-hidden="true">→</span></a>
 		</div>
 		<div class="l-masonry">
-			{
-				posts.map((post) => (
-					<article class="l-post-card">
-						<div class="l-post-card__img-wrap">
-							<a href={`/blog/${post.id}/`}>
-								{post.data.heroImage &&
-									(typeof post.data.heroImage === 'string' ? (
-										<img src={post.data.heroImage} alt="" width="600" height="400" />
-									) : (
-										<Image width={600} height={400} src={post.data.heroImage} alt="" />
-									))}
-							</a>
-						</div>
-						<div class="l-post-card__body">
-							<div class="l-post-card__meta">
-								<span>{post.data.category ?? 'Article'}</span>
-							</div>
-							<h4>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-							</h4>
-							<p>{post.data.description}</p>
-						</div>
-					</article>
-				))
-			}
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a
+						href="https://learn.gthememarket.com/blog/common-business-development-mistakes-and-how-to-avoid-them/"
+						><img
+							src="https://images.unsplash.com/photo-1646215993421-5151435c78dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a
+							href="https://learn.gthememarket.com/blog/common-business-development-mistakes-and-how-to-avoid-them/"
+							>Common Business Development Mistakes and How to Avoid Them</a>
+					</h4>
+					<p>
+						Avoid costly business development mistakes by learning the most common pitfalls and their solutions.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a
+						href="https://learn.gthememarket.com/blog/effective-negotiation-skills-every-business-developer-needs/"
+						><img
+							src="https://images.unsplash.com/photo-1696087225391-eb97abf5ba20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a
+							href="https://learn.gthememarket.com/blog/effective-negotiation-skills-every-business-developer-needs/"
+							>Effective Negotiation Skills Every Business Developer Needs</a>
+					</h4>
+					<p>Master essential negotiation skills to close deals, build partnerships, and drive business success.</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/the-role-of-networking-in-business-growth/"
+						><img
+							src="https://images.unsplash.com/photo-1520110120835-c96534a4c984?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/the-role-of-networking-in-business-growth/"
+							>The Role of Networking in Business Growth</a>
+					</h4>
+					<p>
+						Find out how effective networking can open doors, build trust, and accelerate your business growth.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/how-to-identify-and-seize-new-market-opportunities/"
+						><img
+							src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/how-to-identify-and-seize-new-market-opportunities/"
+							>How to Identify and Seize New Market Opportunities</a>
+					</h4>
+					<p>
+						Discover practical ways to spot new market opportunities and position your business for sustainable
+						growth.
+					</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/the-ultimate-guide-to-python-data-structures/"
+						><img
+							src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Python</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/the-ultimate-guide-to-python-data-structures/"
+							>The Ultimate Guide to Python Data Structures</a>
+					</h4>
+					<p>Python is renowned for its readability and simplicity, and its data structures are no exception.</p>
+				</div>
+			</article>
+			<article class="l-post-card">
+				<div class="l-post-card__img-wrap">
+					<a href="https://learn.gthememarket.com/blog/mastering-javascript-essential-tips-for-beginners/"
+						><img
+							src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900"
+							alt=""
+						/></a>
+					<img
+						class="l-post-card__avatar"
+						src="https://www.gravatar.com/avatar/5f754473381188309514551c12e6151d?s=250&r=x&d=mp"
+						alt=""
+					/>
+				</div>
+				<div class="l-post-card__body">
+					<div class="l-post-card__meta"><span>Tutorial</span></div>
+					<h4>
+						<a href="https://learn.gthememarket.com/blog/mastering-javascript-essential-tips-for-beginners/"
+							>Mastering JavaScript: Essential Tips for Beginners</a>
+					</h4>
+					<p>Dive into the basics of JavaScript with practical tips and techniques for beginners.</p>
+				</div>
+			</article>
 		</div>
 	</div>
 </section>
