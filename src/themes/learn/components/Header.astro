@@ -24,13 +24,15 @@ function isActive(href: string) {
 			<img src="https://learn.gthememarket.com/content/images/2025/08/logo.svg" alt={LEARN_BRAND} width="120" height="40" />
 			<span>{LEARN_BRAND}</span>
 		</a>
-		<nav class="l-nav" aria-label="主导航">
-			<a href="/" aria-current={isActive('/') ? 'page' : undefined}>首页</a>
-			<a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>博客</a>
+		<nav class="l-nav" aria-label="Primary">
+			<a href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+			<a href="https://learn.gthememarket.com/courses/" target="_blank" rel="noopener noreferrer">Courses</a>
+			<a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a>
 			<a
 				href="/course/entrepreneurship-and-innovation/"
-				aria-current={isActive('/course/entrepreneurship-and-innovation/') ? 'page' : undefined}>示例课程</a>
-			<a href="/#latest-courses">课程</a>
+				aria-current={isActive('/course/entrepreneurship-and-innovation/') ? 'page' : undefined}
+				>Sample course</a>
+			<a href="https://learn.gthememarket.com/contact-us/" target="_blank" rel="noopener noreferrer">Contact Us</a>
 		</nav>
 	</div>
 </header>

@@ -1,6 +1,5 @@
-/* Learn — Ghost LMS 演示站复核主题（静态预览）
- * 参考: https://learn.gthememarket.com/
- * 字体与色板对齐：Manrope、gray-800 / gray-400、blue-800
+/* Learn — Ghost LMS (learn.gthememarket.com) · Astro theme baseline
+ * Matches path-c tokens: Manrope, slate text, blue primary. No Sign-up CTA.
  */
 :root {
   --learn-font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
